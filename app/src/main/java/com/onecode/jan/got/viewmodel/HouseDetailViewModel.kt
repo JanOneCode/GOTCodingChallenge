@@ -1,0 +1,63 @@
+package com.onecode.jan.got.viewmodel
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.onecode.jan.got.model.ApiHouse
+import com.onecode.jan.got.model.UiHouseDetail
+import com.onecode.jan.got.repository.HouseRepository
+import com.onecode.jan.got.repository.HouseState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+
+class HouseDetailViewModel : ViewModel() {
+
+    private val _uiStateFlow = MutableStateFlow<HouseDetailUiState>(HouseDetailUiState.Loading)
+    val uiStateFlow = _uiStateFlow.asStateFlow()
+
+    private val houseRepository = HouseRepository()
+
+    init {
+        viewModelScope.launch {
+            houseRepository.stateFlow.collectLatest {
+                update(it)
+            }
+        }
+    }
+
+    private fun update(state: HouseState) {
+        _uiStateFlow.value = when (state) {
+            HouseState.Loading -> HouseDetailUiState.Loading
+            is HouseState.Success -> HouseDetailUiState.Success(
+                data = state.data.first().toUiHouseDetail()
+            )
+            is HouseState.Error -> HouseDetailUiState.Error(error = state.error)
+        }
+    }
+
+    fun fetchHouseById(id: Int) {
+        viewModelScope.launch {
+            houseRepository.fetchHouseById(id)
+        }
+    }
+
+    private fun ApiHouse.toUiHouseDetail(): UiHouseDetail =
+        UiHouseDetail(
+            name = this.name,
+            region = this.region,
+            coatOfArms = this.coatOfArms,
+            words = this.words,
+            titles = this.titles,
+            seats = this.seats,
+            founded = this.founded,
+            diedOut = this.diedOut,
+            ancestralWeapons = this.ancestralWeapons,
+        )
+}
+
+sealed interface HouseDetailUiState {
+    data class Success(val data: UiHouseDetail) : HouseDetailUiState
+    data class Error(val error: Exception) : HouseDetailUiState
+    object Loading : HouseDetailUiState
+}
