@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.onecode.jan.got.model.UiHouseDetail
 import com.onecode.jan.got.ui.theme.IceAndFireTheme
 import com.onecode.jan.got.ui.theme.Typography
@@ -20,7 +20,7 @@ import com.onecode.jan.got.viewmodel.HouseDetailViewModel
 @Composable
 fun HouseDetailScreen(
     id: Int?,
-    viewModel: HouseDetailViewModel = viewModel()
+    viewModel: HouseDetailViewModel = hiltViewModel()
 ) {
     id?.let {
         val state = viewModel.uiStateFlow.collectAsState()

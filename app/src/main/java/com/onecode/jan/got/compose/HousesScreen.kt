@@ -14,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.onecode.jan.got.model.UiHouseItem
 import com.onecode.jan.got.ui.theme.IceAndFireTheme
@@ -24,7 +25,7 @@ import com.onecode.jan.got.viewmodel.HousesViewModel
 @Composable
 fun HousesScreen(
     onClick: (Int) -> Unit,
-    viewModel: HousesViewModel = viewModel()
+    viewModel: HousesViewModel = hiltViewModel()
 ) {
     val state = viewModel.uiStateFlow.collectAsState()
 

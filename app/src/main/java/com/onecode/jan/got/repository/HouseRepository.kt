@@ -1,18 +1,17 @@
 package com.onecode.jan.got.repository
 
+import com.onecode.jan.got.api.IceAndFireApiService
 import com.onecode.jan.got.model.ApiHouse
-import com.onecode.jan.got.util.RetrofitUtil
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class HouseRepository {
+class HouseRepository(private val apiService: IceAndFireApiService) {
 
     private val _stateFlow = MutableStateFlow<HouseState>(HouseState.Loading)
     val stateFlow: StateFlow<HouseState> = _stateFlow
 
     suspend fun fetchHouses() {
-        val service = RetrofitUtil.getIceAndFireApiService(GOT_BASE_URL)
-        val response = service.fetchHouses()
+        val response = apiService.fetchHouses()
 
         _stateFlow.value = if (response.isSuccessful) {
             response.body()?.let {
@@ -24,8 +23,7 @@ class HouseRepository {
     }
 
     suspend fun fetchHouseById(id: Int) {
-        val service = RetrofitUtil.getIceAndFireApiService(GOT_BASE_URL)
-        val response = service.fetchHouseById(id)
+        val response = apiService.fetchHouseById(id)
 
         _stateFlow.value = if (response.isSuccessful) {
             response.body()?.let {

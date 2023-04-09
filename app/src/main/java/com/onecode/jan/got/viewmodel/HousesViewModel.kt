@@ -6,17 +6,20 @@ import com.onecode.jan.got.model.ApiHouse
 import com.onecode.jan.got.model.UiHouseItem
 import com.onecode.jan.got.repository.HouseRepository
 import com.onecode.jan.got.repository.HouseState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HousesViewModel : ViewModel() {
+@HiltViewModel
+class HousesViewModel @Inject constructor(
+    private val houseRepository: HouseRepository
+) : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow<HousesUiState>(HousesUiState.Loading)
     val uiStateFlow = _uiStateFlow.asStateFlow()
-
-    private val houseRepository = HouseRepository()
 
     init {
         viewModelScope.launch {
