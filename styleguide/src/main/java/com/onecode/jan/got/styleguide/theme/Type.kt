@@ -1,4 +1,4 @@
-package com.onecode.jan.got.ui.theme
+package com.onecode.jan.got.styleguide.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

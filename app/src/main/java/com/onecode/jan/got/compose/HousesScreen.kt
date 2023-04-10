@@ -15,9 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.onecode.jan.got.model.UiHouseItem
-import com.onecode.jan.got.ui.theme.IceAndFireTheme
+import com.onecode.jan.got.styleguide.theme.IceAndFireTheme
 import com.onecode.jan.got.util.PhonePreview
 import com.onecode.jan.got.viewmodel.HousesUiState
 import com.onecode.jan.got.viewmodel.HousesViewModel

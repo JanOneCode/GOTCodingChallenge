@@ -1,4 +1,4 @@
-package com.onecode.jan.got.ui.theme
+package com.onecode.jan.got.styleguide.theme
 
 import androidx.compose.ui.graphics.Color
 

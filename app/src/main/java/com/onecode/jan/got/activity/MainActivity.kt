@@ -5,11 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.onecode.jan.got.compose.NavGraph
-import com.onecode.jan.got.ui.theme.IceAndFireTheme
+import com.onecode.jan.got.styleguide.theme.IceAndFireTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
