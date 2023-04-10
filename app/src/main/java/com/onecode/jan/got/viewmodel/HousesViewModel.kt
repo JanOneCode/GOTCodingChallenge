@@ -2,10 +2,10 @@ package com.onecode.jan.got.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.onecode.jan.got.model.ApiHouse
 import com.onecode.jan.got.model.UiHouseItem
+import com.onecode.jan.got.model.api.ApiHouse
 import com.onecode.jan.got.repository.HouseRepository
-import com.onecode.jan.got.repository.HouseState
+import com.onecode.jan.got.repository.RepositoryState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,11 +29,11 @@ class HousesViewModel @Inject constructor(
         }
     }
 
-    private fun update(state: HouseState) {
+    private fun update(state: RepositoryState<List<ApiHouse>>) {
         _uiStateFlow.value = when (state) {
-            HouseState.Loading -> HousesUiState.Loading
-            is HouseState.Success -> HousesUiState.Success(data = state.data.toUiHouseItem())
-            is HouseState.Error -> HousesUiState.Error(error = state.error)
+            RepositoryState.Loading -> HousesUiState.Loading
+            is RepositoryState.Success -> HousesUiState.Success(data = state.data.toUiHouseItem())
+            is RepositoryState.Error -> HousesUiState.Error(error = state.error)
         }
     }
 

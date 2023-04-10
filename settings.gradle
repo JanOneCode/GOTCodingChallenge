@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "GOT"
 include ':app'
+include ':model'
+include ':datasource'
+include ':repository'
+include ':styleguide'
