@@ -2,30 +2,25 @@ package com.onecode.jan.got.datasource.network
 
 import com.onecode.jan.got.datasource.DatasourceResult
 import com.onecode.jan.got.datasource.api.IceAndFireApiService
-import com.onecode.jan.got.model.api.ApiHouse
+import retrofit2.Response
 
 class HouseNetworkDatasource(
     private val apiService: IceAndFireApiService
 ) {
-    suspend fun fetchHouses(): DatasourceResult<List<ApiHouse>> {
-        val response = apiService.fetchHouses()
-        return if (response.isSuccessful) {
-            response.body()?.let {
-                DatasourceResult.Success(it)
-            } ?: DatasourceResult.Error(error = Exception("Empty list"))
-        } else {
-            DatasourceResult.Error(error = Exception("Failed to fetch houses: ${response.code()} - ${response.message()}"))
-        }
-    }
+    suspend fun fetchHouses() = apiService.fetchHouses().toDatasourceResult()
 
-    suspend fun fetchHouseById(id: Int): DatasourceResult<ApiHouse> {
-        val response = apiService.fetchHouseById(id)
-        return if (response.isSuccessful) {
-            response.body()?.let {
+    suspend fun fetchHousesByPage(page: Int) =
+        apiService.fetchHousesByPage(page).toDatasourceResult()
+
+    suspend fun fetchHouseById(id: Int) = apiService.fetchHouseById(id).toDatasourceResult()
+
+    private fun <T> Response<T>.toDatasourceResult(): DatasourceResult<T> {
+        return if (this.isSuccessful) {
+            this.body()?.let {
                 DatasourceResult.Success(it)
             } ?: DatasourceResult.Error(error = Exception("Empty list"))
         } else {
-            DatasourceResult.Error(error = Exception("Failed to fetch houses: ${response.code()} - ${response.message()}"))
+            DatasourceResult.Error(error = Exception("Failed to fetch houses: ${this.code()} - ${this.message()}"))
         }
     }
 }

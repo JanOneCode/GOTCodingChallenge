@@ -18,7 +18,7 @@ fun NavGraph(
     )
     {
         composable(route = "houseList") {
-            HousesScreen(
+            HousesOverviewScreen(
                 onClick = {
                     navController.navigate("houseDetail/$it") {
                         popUpTo("houseList")
