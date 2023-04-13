@@ -26,7 +26,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideIceAndFireApiService(retrofit: Retrofit): IceAndFireApiService {
+    internal fun provideIceAndFireApiService(retrofit: Retrofit): IceAndFireApiService {
         return retrofit.create(IceAndFireApiService::class.java)
     }
 }

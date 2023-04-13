@@ -8,10 +8,7 @@ import retrofit2.http.Query
 
 private const val PAGE_SIZE = 25
 
-interface IceAndFireApiService {
-    @GET("/api/houses")
-    suspend fun fetchHouses(): Response<List<ApiHouse>>
-
+internal interface IceAndFireApiService {
     @GET("/api/houses")
     suspend fun fetchHousesByPage(
         @Query("page") page: Int,

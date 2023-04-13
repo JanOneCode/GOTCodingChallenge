@@ -1,4 +1,4 @@
-package com.onecode.jan.got.repository.paging
+package com.onecode.jan.got.repository.house
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

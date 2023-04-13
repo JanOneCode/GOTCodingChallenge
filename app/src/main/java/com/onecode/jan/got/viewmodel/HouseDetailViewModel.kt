@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.onecode.jan.got.model.UiHouseDetail
 import com.onecode.jan.got.model.api.ApiHouse
-import com.onecode.jan.got.repository.HouseRepository
 import com.onecode.jan.got.repository.RepositoryState
+import com.onecode.jan.got.repository.house.HouseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

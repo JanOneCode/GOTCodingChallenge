@@ -7,7 +7,7 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.onecode.jan.got.model.UiHouseItem
 import com.onecode.jan.got.model.api.ApiHouse
-import com.onecode.jan.got.repository.HouseRepository
+import com.onecode.jan.got.repository.house.HouseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

@@ -1,19 +1,18 @@
 package com.onecode.jan.got.repository.hilt
 
-import com.onecode.jan.got.datasource.network.HouseNetworkDatasource
-import com.onecode.jan.got.repository.HouseRepository
+import com.onecode.jan.got.repository.house.HouseRepository
+import com.onecode.jan.got.repository.house.HouseRepositoryImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+internal abstract class RepositoryModule {
 
     @Singleton
-    @Provides
-    fun provideHouseRepository(networkDatasource: HouseNetworkDatasource): HouseRepository =
-        HouseRepository(networkDatasource)
+    @Binds
+    abstract fun bindHouseRepository(houseRepositoryImpl: HouseRepositoryImpl): HouseRepository
 }
