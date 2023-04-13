@@ -1,4 +1,4 @@
-package com.onecode.jan.got.styleguide.theme
+package com.onecode.jan.got.designsystem.theme
 
 import android.app.Activity
 import android.os.Build

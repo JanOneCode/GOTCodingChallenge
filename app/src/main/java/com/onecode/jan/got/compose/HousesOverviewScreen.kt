@@ -23,7 +23,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.onecode.jan.got.model.UiHouseItem
-import com.onecode.jan.got.styleguide.theme.IceAndFireTheme
+import com.onecode.jan.got.designsystem.theme.IceAndFireTheme
 import com.onecode.jan.got.util.PhonePreview
 import com.onecode.jan.got.viewmodel.HouseOverviewViewModel
 import kotlinx.coroutines.flow.flowOf

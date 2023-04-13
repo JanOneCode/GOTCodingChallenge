@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.onecode.jan.got.model.UiHouseDetail
-import com.onecode.jan.got.styleguide.theme.IceAndFireTheme
-import com.onecode.jan.got.styleguide.theme.Typography
+import com.onecode.jan.got.designsystem.theme.IceAndFireTheme
+import com.onecode.jan.got.designsystem.theme.Typography
 import com.onecode.jan.got.util.PhonePreview
 import com.onecode.jan.got.viewmodel.HouseDetailUiState
 import com.onecode.jan.got.viewmodel.HouseDetailViewModel
