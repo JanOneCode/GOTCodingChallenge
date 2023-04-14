@@ -1,21 +1,18 @@
-package com.onecode.jan.got.compose
+package com.onecode.jan.got.detail
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.onecode.jan.got.model.UiHouseDetail
 import com.onecode.jan.got.designsystem.theme.IceAndFireTheme
 import com.onecode.jan.got.designsystem.theme.Typography
 import com.onecode.jan.got.util.PhonePreview
-import com.onecode.jan.got.viewmodel.HouseDetailUiState
-import com.onecode.jan.got.viewmodel.HouseDetailViewModel
 
 @Composable
 fun HouseDetailScreen(
@@ -26,7 +23,7 @@ fun HouseDetailScreen(
         val state = viewModel.uiStateFlow.collectAsState()
         viewModel.fetchHouseById(it)
         Content(state = state.value)
-    }
+    } ?: Error()
 }
 
 @Composable
@@ -35,10 +32,33 @@ private fun Content(
 ) {
     Column {
         when (state) {
-            HouseDetailUiState.Loading -> {}
+            HouseDetailUiState.Loading -> Loading()
             is HouseDetailUiState.Success -> HouseDetail(state.data)
-            is HouseDetailUiState.Error -> {}
+            is HouseDetailUiState.Error -> Error()
         }
+    }
+}
+
+@Composable
+private fun Loading() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator()
+        Text("Das Haus wird zu den Banner gerufen!")
+    }
+}
+
+@Composable
+private fun Error() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text("Das Haus wird zu den Banner gerufen!")
     }
 }
 

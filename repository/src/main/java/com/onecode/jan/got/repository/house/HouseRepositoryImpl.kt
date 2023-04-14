@@ -27,7 +27,7 @@ internal class HouseRepositoryImpl @Inject constructor(
     }
 
     override fun getHouses() = Pager(
-        config = PagingConfig(pageSize = 25),
+        config = PagingConfig(pageSize = 25, prefetchDistance = 5),
         pagingSourceFactory = { HousesPagingSource(networkDatasource) }
     ).flow
 }

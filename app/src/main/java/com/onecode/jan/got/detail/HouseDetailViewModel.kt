@@ -1,8 +1,7 @@
-package com.onecode.jan.got.viewmodel
+package com.onecode.jan.got.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.onecode.jan.got.model.UiHouseDetail
 import com.onecode.jan.got.model.api.ApiHouse
 import com.onecode.jan.got.repository.RepositoryState
 import com.onecode.jan.got.repository.house.HouseRepository

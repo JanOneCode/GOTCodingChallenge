@@ -1,4 +1,4 @@
-package com.onecode.jan.got.compose
+package com.onecode.jan.got.overview
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -22,14 +22,12 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.onecode.jan.got.model.UiHouseItem
 import com.onecode.jan.got.designsystem.theme.IceAndFireTheme
 import com.onecode.jan.got.util.PhonePreview
-import com.onecode.jan.got.viewmodel.HouseOverviewViewModel
 import kotlinx.coroutines.flow.flowOf
 
 @Composable
-fun HousesOverviewScreen(
+fun HouseOverviewScreen(
     onClick: (Int) -> Unit,
     viewModel: HouseOverviewViewModel = hiltViewModel()
 ) {

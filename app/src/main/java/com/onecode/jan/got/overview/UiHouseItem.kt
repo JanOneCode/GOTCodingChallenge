@@ -1,4 +1,4 @@
-package com.onecode.jan.got.model
+package com.onecode.jan.got.overview
 
 data class UiHouseItem(
     val id: Int,

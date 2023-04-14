@@ -1,4 +1,4 @@
-package com.onecode.jan.got.model
+package com.onecode.jan.got.detail
 
 data class UiHouseDetail(
     val name: String = "",

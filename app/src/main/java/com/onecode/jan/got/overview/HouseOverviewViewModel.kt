@@ -1,11 +1,10 @@
-package com.onecode.jan.got.viewmodel
+package com.onecode.jan.got.overview
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.onecode.jan.got.model.UiHouseItem
 import com.onecode.jan.got.model.api.ApiHouse
 import com.onecode.jan.got.repository.house.HouseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
