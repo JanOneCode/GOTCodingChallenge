@@ -1,15 +1,18 @@
 package com.onecode.jan.got.detail
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.onecode.jan.got.R
 import com.onecode.jan.got.designsystem.theme.IceAndFireTheme
 import com.onecode.jan.got.designsystem.theme.Typography
 import com.onecode.jan.got.util.PhonePreview
@@ -20,7 +23,7 @@ fun HouseDetailScreen(
     viewModel: HouseDetailViewModel = hiltViewModel()
 ) {
     id?.let {
-        val state = viewModel.uiStateFlow.collectAsState()
+        val state = viewModel.uiStateFlow.collectAsState(HouseDetailUiState.Loading)
         viewModel.fetchHouseById(it)
         Content(state = state.value)
     } ?: Error()
@@ -47,7 +50,7 @@ private fun Loading() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CircularProgressIndicator()
-        Text("Das Haus wird zu den Banner gerufen!")
+        Text(stringResource(R.string.house_details_loading))
     }
 }
 
@@ -65,62 +68,108 @@ private fun Error() {
 @Composable
 private fun HouseDetail(data: UiHouseDetail) {
     Column {
-        TitleContent(title = "Name", content = data.name)
-        TitleContent(title = "Region", content = data.region)
-        TitleContent(title = "Coat of arms", content = data.coatOfArms)
-        TitleContent(title = "Words", content = data.words)
-        TitleContent(title = "Titles", content = data.titles)
-        TitleContent(title = "Seats", content = data.seats)
-        TitleContent(title = "Founded", content = data.founded)
-        TitleContent(title = "Died out", content = data.diedOut)
-        TitleContent(title = "Ancestral weapons", content = data.ancestralWeapons)
+        TitleContent(title = stringResource(id = R.string.house_name), content = data.name)
+        data.region?.let {
+            TitleContent(
+                title = stringResource(id = R.string.house_region),
+                content = it
+            )
+        }
+        data.coatOfArms?.let {
+            TitleContent(
+                title = stringResource(id = R.string.house_coat_of_arms),
+                content = it
+            )
+        }
+        data.words?.let {
+            TitleContent(
+                title = stringResource(id = R.string.house_words),
+                content = it
+            )
+        }
+        data.titles?.let {
+            TitleContent(
+                title = stringResource(id = R.string.house_titles),
+                content = it
+            )
+        }
+        data.seats?.let {
+            TitleContent(
+                title = stringResource(id = R.string.house_seats),
+                content = it
+            )
+        }
+        data.founded?.let {
+            TitleContent(
+                title = stringResource(id = R.string.house_founded),
+                content = it
+            )
+        }
+        data.diedOut?.let {
+            TitleContent(
+                title = stringResource(id = R.string.house_died_out),
+                content = it
+            )
+        }
+        data.ancestralWeapons?.let {
+            TitleContent(
+                title = stringResource(id = R.string.house_ancestral_weapons),
+                content = it
+            )
+        }
     }
 }
 
 @Composable
 private fun TitleContent(title: String, content: String) {
-    if (content.isNotEmpty()) {
-        Column {
+    Column(modifier = Modifier.padding(vertical = 2.dp)) {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(all = 4.dp),
+            text = title,
+            style = Typography.titleMedium
+        )
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            shape = RoundedCornerShape(size = 2.dp)
+        ) {
             Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 8.dp, top = 4.dp),
-                text = title,
-                style = Typography.titleMedium
-            )
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp),
+                modifier = Modifier.padding(horizontal = 4.dp),
                 text = content,
                 style = Typography.bodySmall
             )
-            Divider(modifier = Modifier.padding(top = 4.dp))
         }
     }
 }
 
 @Composable
 private fun TitleContent(title: String, content: List<String>) {
-    if (content.isNotEmpty() && content.first().isNotEmpty()) {
-        Column {
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 8.dp, top = 4.dp),
-                text = title,
-                style = Typography.titleMedium
-            )
+    Column(modifier = Modifier.padding(vertical = 2.dp)) {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(all = 4.dp),
+            text = title,
+            style = Typography.titleMedium
+        )
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            shape = RoundedCornerShape(size = 2.dp)
+        ) {
             content.forEach {
                 Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, end = 16.dp),
+                    modifier = Modifier.padding(horizontal = 4.dp),
                     text = it,
                     style = Typography.bodySmall
                 )
             }
-            Divider(modifier = Modifier.padding(top = 4.dp))
         }
     }
 }
@@ -159,7 +208,6 @@ private val houseArryn = UiHouseDetail(
     ),
     founded = "Coming of the Andals",
     diedOut = "Never",
-    ancestralWeapons = listOf()
 )
 
 private val houseAlgood = UiHouseDetail(

@@ -1,13 +1,13 @@
 package com.onecode.jan.got.detail
 
 data class UiHouseDetail(
-    val name: String = "",
-    val region: String = "",
-    val coatOfArms: String = "",
-    val words: String = "",
-    val titles: List<String> = listOf(""),
-    val seats: List<String> = listOf(""),
-    val founded: String = "",
-    val diedOut: String = "",
-    val ancestralWeapons: List<String> = listOf(""),
+    val name: String,
+    val region: String? = null,
+    val coatOfArms: String? = null,
+    val words: String? = null,
+    val titles: List<String>? = null,
+    val seats: List<String>? = null,
+    val founded: String? = null,
+    val diedOut: String? = null,
+    val ancestralWeapons: List<String>? = null,
 )

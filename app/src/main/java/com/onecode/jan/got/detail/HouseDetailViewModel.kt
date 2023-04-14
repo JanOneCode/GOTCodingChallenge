@@ -2,7 +2,7 @@ package com.onecode.jan.got.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.onecode.jan.got.model.api.ApiHouse
+import com.onecode.jan.got.model.domain.DomainHouse
 import com.onecode.jan.got.repository.RepositoryState
 import com.onecode.jan.got.repository.house.HouseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,11 +28,11 @@ class HouseDetailViewModel @Inject constructor(
         }
     }
 
-    private fun update(state: RepositoryState<List<ApiHouse>>) {
+    private fun update(state: RepositoryState<DomainHouse>) {
         _uiStateFlow.value = when (state) {
             RepositoryState.Loading -> HouseDetailUiState.Loading
             is RepositoryState.Success -> HouseDetailUiState.Success(
-                data = state.data.first().toUiHouseDetail()
+                data = state.data.toUiHouseDetail()
             )
             is RepositoryState.Error -> HouseDetailUiState.Error(error = state.error)
         }
@@ -44,7 +44,7 @@ class HouseDetailViewModel @Inject constructor(
         }
     }
 
-    private fun ApiHouse.toUiHouseDetail(): UiHouseDetail =
+    private fun DomainHouse.toUiHouseDetail(): UiHouseDetail =
         UiHouseDetail(
             name = this.name,
             region = this.region,

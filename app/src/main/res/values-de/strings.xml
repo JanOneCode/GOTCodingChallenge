@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="house_details_loading">Das Haus wird zu den Banner gerufen!</string>
+
+    <string name="house_name">Name</string>
+    <string name="house_region">Name</string>
+    <string name="house_coat_of_arms">Wappen</string>
+    <string name="house_words">Motto</string>
+    <string name="house_titles">Titel</string>
+    <string name="house_seats">Sitz</string>
+    <string name="house_founded">Gegründet</string>
+    <string name="house_died_out">Ausgestorben</string>
+    <string name="house_ancestral_weapons">Ahnen-Waffen</string>
+</resources>

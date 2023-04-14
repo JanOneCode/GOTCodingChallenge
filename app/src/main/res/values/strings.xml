@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">GOT</string>
+    <string name="app_name" translatable="false">Ice And Fire</string>
+
+    <string name="house_details_loading">The house is called to the banners!</string>
+
+    <string name="house_name">Name</string>
+    <string name="house_region">Region</string>
+    <string name="house_coat_of_arms">Coat of Arms</string>
+    <string name="house_words">Words</string>
+    <string name="house_titles">Titles</string>
+    <string name="house_seats">Seats</string>
+    <string name="house_founded">Founded</string>
+    <string name="house_died_out">Died Out</string>
+    <string name="house_ancestral_weapons">Ancestral Weapons</string>
 </resources>

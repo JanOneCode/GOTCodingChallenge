@@ -1,15 +1,13 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.onecode.jan.got.overview
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -40,7 +38,10 @@ private fun Content(
     houseOverviewPagingItems: LazyPagingItems<UiHouseItem>,
     onClick: (Int) -> Unit
 ) {
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier.padding(all = 8.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
         items(
             items = houseOverviewPagingItems,
             key = { it.id }
@@ -101,28 +102,28 @@ private fun HouseCard(
     house: UiHouseItem,
     onClick: (Int) -> Unit
 ) {
-    Column(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(all = 8.dp)
-            .border(
-                border = BorderStroke(width = 1.dp, color = Color.Black),
-                shape = RoundedCornerShape(size = 2.dp)
-            )
-            .clickable { onClick(house.id) }
-    ) {
+            .padding(horizontal = 8.dp),
+        shape = RoundedCornerShape(size = 2.dp),
+        onClick = { onClick(house.id) }) {
+
         Text(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 4.dp),
             text = house.name
         )
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 8.dp, top = 4.dp, end = 8.dp, bottom = 8.dp),
-            text = house.region
-        )
+
+        house.region?.let {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 8.dp, top = 4.dp, end = 8.dp, bottom = 8.dp),
+                text = it
+            )
+        }
     }
 }
 
