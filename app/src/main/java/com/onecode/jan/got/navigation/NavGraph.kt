@@ -1,12 +1,10 @@
-package com.onecode.jan.got.activity
+package com.onecode.jan.got.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.onecode.jan.got.detail.HouseDetailScreen
 import com.onecode.jan.got.overview.HouseOverviewScreen
 
@@ -16,22 +14,22 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = "overview"
+        startDestination = Destination.HouseOverview.routePattern
     )
     {
-        composable(route = "overview") {
+        composable(route = Destination.HouseOverview.routePattern) {
             HouseOverviewScreen(
                 onClick = {
-                    navController.navigate("houseDetail/$it") {
-                        popUpTo("overview")
+                    navController.navigate(Destination.HouseDetails.createRoute(it)) {
+                        popUpTo(Destination.HouseOverview.routePattern)
                     }
                 })
         }
         composable(
-            route = "houseDetail/{id}",
-            arguments = listOf(navArgument("id") { type = NavType.IntType })
+            route = Destination.HouseDetails.routePattern,
+            arguments = Destination.HouseDetails.arguments
         ) {
-            HouseDetailScreen(id = it.arguments?.getInt("id"))
+            HouseDetailScreen()
         }
     }
 }

@@ -19,14 +19,10 @@ import com.onecode.jan.got.util.PhonePreview
 
 @Composable
 fun HouseDetailScreen(
-    id: Int?,
     viewModel: HouseDetailViewModel = hiltViewModel()
 ) {
-    id?.let {
-        val state = viewModel.uiStateFlow.collectAsState(HouseDetailUiState.Loading)
-        viewModel.fetchHouseById(it)
-        Content(state = state.value)
-    } ?: Error()
+    val state = viewModel.uiStateFlow.collectAsState()
+    Content(state = state.value)
 }
 
 @Composable
